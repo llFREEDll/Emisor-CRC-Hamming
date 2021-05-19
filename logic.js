@@ -7,31 +7,59 @@ var writeBinary = document.getElementById('binary');
 var writeHamming = document.getElementById('hamming');
 var writeCrc = document.getElementById('crc');
 
+const isBinary = input =>{
+  var isBin = true;
+  for (var i = 0; i < input.length; i++) {
+    if (input.charAt(i) != "1" && input.charAt(i) != "0")
+      isBin = false;
+  }
+  return isBin;
+}
 const Evaluate = () => {
+
   let aux = caracter.value;
-  if(aux.length > 0){
-    let aux = inputCrc.value;
-    if(aux.length > 0){
-      if(aux.charAt(0) == 1){
-      if(radioPar.checked){
-        var asc = caracter.value.charCodeAt(0);
-        //writeAscii.innerHTML = writeAscii.textContent + asc;
-        writeAscii.innerHTML = "El ASCII es: " + asc;
-        asc = DecToBin(asc);
-        asc = HammingPar(asc);
-        MethodCrc(asc,inputCrc.value);
+  let error = "";
 
-      }else if(radioImpar.checked){
-        var asc = caracter.value.charCodeAt(0);
-        writeAscii.innerHTML = "El ASCII es: " + asc;
-        asc = DecToBin(asc);
-        asc = HammingImpar(asc);
-        MethodCrc(asc,inputCrc.value);
+  if (aux.length != 1)
+    error += "Ingresa solo un caracter<br>";
 
-      }else alert("Selecciona par o impar");
-    }else alert("Tu ecuacion CRC no existe");
-  }else alert("Rellena la ecuacion CRC");
-}else alert("Ingresa un caracter");
+  aux = inputCrc.value;
+  if(aux.length < 0)
+    error += "Rellena la ecuacion CRC<br>";
+
+  if(!isBinary(aux))
+    error += "La ecuacion CRC tiene que ser binario<br>";
+
+  if(aux.charAt(0) != 1)
+    error += "Tu ecuacion CRC no existe<br>";
+
+  if(!radioPar.checked && !radioImpar.checked)
+    error += "Selecciona par o impar<br>";
+
+  if (error == "") {
+    document.getElementById("resultado").hidden = false;
+    document.getElementById("error").hidden = true;
+    if(radioPar.checked){
+      var asc = caracter.value.charCodeAt(0);
+      //writeAscii.innerHTML = writeAscii.textContent + asc;
+      writeAscii.innerHTML = "El ASCII es: " + asc;
+      asc = DecToBin(asc);
+      asc = HammingPar(asc);
+      MethodCrc(asc,inputCrc.value);
+
+    }else if(radioImpar.checked){
+      var asc = caracter.value.charCodeAt(0);
+      writeAscii.innerHTML = "El ASCII es: " + asc;
+      asc = DecToBin(asc);
+      asc = HammingImpar(asc);
+      MethodCrc(asc,inputCrc.value);
+    }
+
+  }else {
+    document.getElementById("error").hidden = false;
+    document.getElementById("resultado").hidden = true;
+    document.getElementById("error").innerHTML = error;
+  }
 
 }
 const MethodCrc = (cadena,polinomio) => {
@@ -56,7 +84,7 @@ const MethodCrc = (cadena,polinomio) => {
     if(index > -1)
     cadena = cadena.substring( index,cadena.length);
     else cadena = "";
-    
+
   }
   cadena = cadena.substring(cadena.length - (polinomio.length - 1), cadena.length);
   while (cadena.length < polinomio.length - 1) {
