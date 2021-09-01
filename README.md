@@ -11,4 +11,4 @@ Emisor by method CRC and hamming
 
 - El tercer valor define la paridad si es par o impar, esto nos indica si los bits activos en la trama, los números “1”, que fueron enviados son pares o impares.
 
-Asu ves este código puede ser verificado con el [Receptor CRC Hamming](https://llfreedll.github.io/Receptor-CRC-Hamming/).
+Asu ves este código puede ser verificado con el [Receptor CRC Hamming](https://nanowebmx.web.app/receptor-crc).
