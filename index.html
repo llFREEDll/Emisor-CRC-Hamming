@@ -9,59 +9,61 @@
   </head>
   <body>
     <div class="container">
-      <div class="bar" >
-              <label>Emisor CRC Hamming</label>
+      <div class="my-5 bar" >
+              <h1>Emisor CRC Hamming</h1>
       </div>
     </div>
 
-    <div class="container">
-      <div class="main">
-        <div class="form-group row">
-            <label class="w-25" for="caracter">Ingresa un caracter</label>
-            <input id="caracter" class="w-25 form-control">
-        </div>
-
-        <div class="form-group row">
-          <label class="w-25" for="CRC">Ingresa el polinomio en binario</label>
-          <input id="CRC" class="w-25 form-control">
-        </div>
-
-        <div class="form-group row m-50">
-          <label class="form-check-label">Tipo de paridad: </label>
-        </div>
-        <div class="form-check row m-50">
-          <input type="radio" class="form-check-input" id="par" name="paridad" value="Par">
-          <label class="form-check-label" for="par">Par</label><br>
-          <input type="radio" class="form-check-input" id="impar" name="paridad" value="Impar">
-          <label class="form-check-label" for="impar">Impar</label><br>
-        </div>
-
-        <div class="form-group row m-50" style="margin: 20px">
-          <button class="btn1 btn btn-primary " onclick="Evaluate()">Evaluar</button>
-        </div>
-
-        <div class="form-group row">
-          <p class="alert alert-danger w-50" style="text-align:center" hidden id="error"></p>
-        </div>
-
-        <div class="form-group row noMarginLeft">
-          <div class="alert alert-success w-50" hidden id="resultado">
-            <div class="form-group row noMarginLeft" >
-              <label id="ascii" class="lbl">El ASCII es: </label>
-            </div>
-            <div class="form-group row noMarginLeft">
-              <label id="binary" class="lbl">En binario es: </label>
-            </div>
-            <div class="form-group row noMarginLeft">
-              <label id="hamming" class="lbl">Con Hamming: </label>
-            </div>
-            <div class="form-group row noMarginLeft">
-              <label id="crc" class="lbl">Con CRC: </label>
-            </div>
+    <div class="my-5 main py-3 container">
+        
+        <div class="mb-5 row">
+          <label for="caracter" class="col-sm-6 col-form-label">Ingresa un caracter</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="caracter">
           </div>
         </div>
 
-      </div>
+        <div class="mb-5 row">
+          <label for="CRC" class="col-sm-6 col-form-label">Ingresa el polinomio en binario</label>
+          <div class="col-sm-6">
+            <input type="number" class=" form-control" id="CRC">
+          </div>
+        </div>
+
+
+        <div class=" text-center">
+          <label class="form-check-label">Tipo de paridad: </label>
+        </div>
+        <div class="text-center">
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="par" name="paridad" value="Par">
+            <label class="form-check-label" for="par">Par</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="impar" name="paridad" value="Impar">
+            <label class="form-check-label" for="impar">Impar</label>
+          </div>
+          
+        </div>
+        
+
+        <div class="text-center" style="margin: 20px">
+          <button class="btn1 btn btn-primary " onclick="Evaluate()">Evaluar</button>
+        </div>
+
+        <div class="text-center ">
+          <p class="alert alert-danger" style="text-align:center" hidden id="error"></p>
+        </div>
+
+        <div class=" text-center">
+          <div class="alert alert-success text-center" hidden id="resultado">
+              <label id="ascii" class="lbl">El ASCII es: </label><br/>
+              <label id="binary" class="lbl">En binario es: </label><br/>
+              <label id="hamming" class="lbl">Con Hamming: </label><br/>
+              <label id="crc" class="lbl">Con CRC: </label>
+          </div>
+        </div>
+
     </div>
     <div class="container" style="margin-top:60px">
       <div class="main2">
@@ -71,7 +73,7 @@
           El primero es un carácter que simula el envió de paquetes por una red, este será convertido a binario y a partir de aquí se realizan las operaciones necesarias para encriptar este dato<br><br>
           El segundo valor recibe un polinomio en binario, mas conocido como una llave, con el cual se encripta el mensaje y este mismo se encarga de desencriptar. <br><br>
           El tercer valor define la paridad si es par o impar, esto nos indica si los bits activos en la trama, los números “1”, que fueron enviados son pares o impares. <br><br>
-          Asu ves este código puede ser verificado con el<a href="https://llfreedll.github.io/Emisor-CRC-Hamming/"> Receptor CRC Hamming.</a> <br><br>
+          Asu ves este código puede ser verificado con el<a href="https://nanowebmx.web.app/receptor-crc"> Receptor CRC Hamming.</a> <br><br>
         </p>
       </div>
     </div>
